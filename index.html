@@ -2,22 +2,27 @@
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1"
+    />
     <title>...</title>
     <style>
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+          "Lucida Sans", Arial, sans-serif;
         background-color: #f0f0f0;
       }
 
-      html, body {
+      html,
+      body {
         max-width: 100%;
         overflow-x: hidden;
       }
-      
+
       #main {
         width: 100%;
         height: 100vh;
@@ -76,7 +81,7 @@
           height: 330px;
           width: 450px;
           max-width: 95%;
-          font-size: 25px;
+          font-size: 15px;
         }
       }
 
@@ -87,7 +92,7 @@
         flex-direction: column;
         width: 450px;
         max-width: 95%;
-        font-size: 25px;
+        font-size: 15px;
       }
 
       #gif {
@@ -121,7 +126,7 @@
   <body>
     <div id="main">
       <button id="click-here" class="button" onclick="showInvite()">
-        Clica <b style="color: #d32525;">Aqui</b>
+        Clica <b style="color: #d32525">Aqui</b>
       </button>
       <div id="invite" class="none">
         <p>Bora Sair?</p>
@@ -129,15 +134,28 @@
         <button class="button" id="no" onclick="changePosition()">👎</button>
       </div>
       <div id="div-gif" class="none">
-        <img
-          id="gif"
-          src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGs1MHhuZmczeGM2OWd3MDVoNGRib3phd25tZHRwamhmeHkyNDBmeiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TdfyKrN7HGTIY/giphy.gif"
-          alt="this slowpoke moves"
-        />
-        <p>✨ Chama no <b style="color: #25D366;">Zap</b> ✨</p>
+        <a id="whats-link" href="#" target="_blank">
+          <img
+            id="gif"
+            src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGs1MHhuZmczeGM2OWd3MDVoNGRib3phd25tZHRwamhmeHkyNDBmeiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TdfyKrN7HGTIY/giphy.gif"
+            alt="this slowpoke moves"
+          />
+        </a>
+        <p>
+          ✨ Clica na imagem pra chamar no <b style="color: #25d366">Zap</b> ✨
+        </p>
       </div>
     </div>
     <script>
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const number = urlParams.get("number");
+      if (number) {
+        document.getElementById(
+          "whats-link"
+        ).href = `https://wa.me/${number}/?text=oii%2C+quando+vai+rolar%3F&t=oii%2C+quando+vai+rolar%3F`;
+      }
+
       let cursor_x = -1;
       let cursor_y = -1;
       document.onmousemove = function (event) {
@@ -228,7 +246,7 @@
 
       randomIntFromInterval = (min, max) => {
         return Math.floor(Math.random() * (max - min + 1) + min);
-      }
+      };
 
       changePosition = () => {
         const body = document.querySelector("body");
